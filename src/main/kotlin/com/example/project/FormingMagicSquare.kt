@@ -3,6 +3,7 @@ package com.example.project
 import kotlin.math.abs
 import kotlin.math.ceil
 import kotlin.math.sqrt
+import kotlin.system.exitProcess
 import kotlin.collections.ArrayList as ArrayList
 
 //時間切れになってしまう。
@@ -22,25 +23,21 @@ class FormingMagicSquare(private val square:Array<Array<Int>>){
         var costs = ArrayList<Int>()
         val calc = Calc()
         for(m in magicSquares){
-            costs.add(calc.cost(m,origin))
-//            println(calc.cost(m,origin))
+            var cost = calc.cost(m,origin)
+//            if(cost == 12){
+//                println(m)
+//            }
+            costs.add(cost)
         }
+//        println(costs)
         return costs.min()?:0
-    }
-    fun convertStringToSquere(numbers:String):Square{
-        val map = Array(3){
-            i->Array(3){
-            j->
-            numbers[ i * 3 + j].toString().toInt()
-        }
-        }
-        return Square(map);
     }
     fun prepareMagicSquares(){
         val numbers = arrayListOf<Int>(1,2,3,4,5,6,7,8,9)
         var combinations:ArrayList<Array<Int>> = Combination(numbers).all()
         for(number in combinations){
             val square = squareFromNumber(number)
+
             if(square.isMagicSquare()){
                 magicSquares.add(square)
             }
@@ -97,8 +94,9 @@ fun squareFromNumber(number:Array<Int>):Square{
                 val ind = i * len + j
                 if(number.size > ind){
                     number[ind]
+                }else{
+                    -1
                 }
-                -1
             }}
     return Square(map);
 
@@ -106,6 +104,15 @@ fun squareFromNumber(number:Array<Int>):Square{
 class Square(var map:Array<Array<Int>>){
     fun fromSquare(number:Array<Int>){
 
+    }
+    override fun toString():String{
+        var str = ""
+       for(row in this.map){
+           for(col in row){
+               str += col.toString()
+           }
+       }
+        return str
     }
     fun isEqualTo(square:Square):Boolean{
           return this.map.contentDeepEquals(square.map)
@@ -117,8 +124,8 @@ class Square(var map:Array<Array<Int>>){
 
             // 横一列すべてが基準値と同じかチェック
             if( row.sum() != baseNum ) return false;
-            for( col in row ){
-                colSums[index] += col.toString().toInt();
+            for( (ind,col) in row.withIndex() ){
+                colSums[ind] += col.toString().toInt();
             }
         }
         for (colSum in colSums){

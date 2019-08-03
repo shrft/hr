@@ -78,6 +78,19 @@ class FormingMagicSquareTests {
 
     }
     @Test
+    fun `test square to string`(){
+        var s = Square(
+                arrayOf(arrayOf(1,2,3), arrayOf(4,5,6), arrayOf(7,8,9))
+        )
+        assertEquals("123456789", s.toString())
+
+        var s2 = Square(
+                arrayOf(arrayOf(1,2,3), arrayOf(4,2,6), arrayOf(7,8,9))
+        )
+        assertEquals("123426789", s2.toString())
+
+    }
+    @Test
     fun `test pattern 1 `(){
         val input = arrayOf(
                 arrayOf(4,9,2),
@@ -94,5 +107,14 @@ class FormingMagicSquareTests {
                 arrayOf(6,1,6)
         )
         assertEquals(4, formingMagicSquare(input))
+    }
+    @Test
+    fun `test case 1`(){
+                val input = arrayOf(
+                arrayOf(4,5,8),
+                arrayOf(2,4,1),
+                arrayOf(1,9,7)
+        )
+        assertEquals(14, formingMagicSquare(input))
     }
 }
