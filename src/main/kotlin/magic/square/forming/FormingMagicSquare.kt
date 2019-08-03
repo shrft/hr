@@ -1,4 +1,4 @@
-package com.example.project
+package magic.square.forming
 
 import kotlin.math.abs
 import kotlin.math.ceil
@@ -45,7 +45,7 @@ class FormingMagicSquare(private val square:Array<Array<Int>>){
     }
 }
 class Calc{
-    fun cost(a:Square, b:Square): Int {
+    fun cost(a: Square, b: Square): Int {
         var costs  = ArrayList<Int>()
         for(i in 0..2){
             for(j in 0..2){
@@ -86,7 +86,7 @@ class Combination(private val numbers: ArrayList<Int>){
         }
     }
 }
-fun squareFromNumber(number:Array<Int>):Square{
+fun squareFromNumber(number:Array<Int>): Square {
     val len = ceil(sqrt(number.size.toFloat())).toInt()
     val map = Array(len){
                 i->Array(len){
@@ -114,7 +114,7 @@ class Square(var map:Array<Array<Int>>){
        }
         return str
     }
-    fun isEqualTo(square:Square):Boolean{
+    fun isEqualTo(square: Square):Boolean{
           return this.map.contentDeepEquals(square.map)
     }
     fun isMagicSquare():Boolean{

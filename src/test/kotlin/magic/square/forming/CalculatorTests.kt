@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v20.html
  */
 
-package com.example.project
+package magic.square.forming
 
 import org.junit.jupiter.api.Assertions.assertEquals
 

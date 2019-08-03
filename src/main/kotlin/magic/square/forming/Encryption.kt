@@ -1,4 +1,4 @@
-package com.example.project
+package magic.square.forming
 
 import kotlin.math.ceil
 import kotlin.math.floor

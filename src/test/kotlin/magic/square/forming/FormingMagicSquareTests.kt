@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v20.html
  */
 
-package com.example.project
+package magic.square.forming
 
 import org.junit.jupiter.api.Assertions.*
 
@@ -64,15 +64,15 @@ class FormingMagicSquareTests {
     @Test
     fun `test calulating cost to convert to magic square`(){
         var a = Square(
-                arrayOf(arrayOf(1,2,3), arrayOf(4,5,6), arrayOf(7,8,9))
+                arrayOf(arrayOf(1, 2, 3), arrayOf(4, 5, 6), arrayOf(7, 8, 9))
         )
         var b = Square(
-                arrayOf(arrayOf(1,2,3), arrayOf(4,5,6), arrayOf(7,8,9))
+                arrayOf(arrayOf(1, 2, 3), arrayOf(4, 5, 6), arrayOf(7, 8, 9))
         )
         assertEquals(0, Calc().cost(a,b))
 
         var c = Square(
-                arrayOf(arrayOf(1,1,3), arrayOf(2,6,6), arrayOf(7,8,8))
+                arrayOf(arrayOf(1, 1, 3), arrayOf(2, 6, 6), arrayOf(7, 8, 8))
         )
         assertEquals(5, Calc().cost(a,c))
 
@@ -80,12 +80,12 @@ class FormingMagicSquareTests {
     @Test
     fun `test square to string`(){
         var s = Square(
-                arrayOf(arrayOf(1,2,3), arrayOf(4,5,6), arrayOf(7,8,9))
+                arrayOf(arrayOf(1, 2, 3), arrayOf(4, 5, 6), arrayOf(7, 8, 9))
         )
         assertEquals("123456789", s.toString())
 
         var s2 = Square(
-                arrayOf(arrayOf(1,2,3), arrayOf(4,2,6), arrayOf(7,8,9))
+                arrayOf(arrayOf(1, 2, 3), arrayOf(4, 2, 6), arrayOf(7, 8, 9))
         )
         assertEquals("123426789", s2.toString())
 
