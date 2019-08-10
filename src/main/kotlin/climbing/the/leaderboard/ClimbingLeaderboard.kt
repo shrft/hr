@@ -22,9 +22,14 @@ import kotlin.text.*
 //https://www.hackerrank.com/challenges/climbing-the-leaderboard/problem
 fun climbingLeaderboard(scores: Array<Int>, alice: Array<Int>): Array<Int> {
     val rankHolder = RankHolder(scores)
-    todo@shira: ここから。aliceのランキングをプリントする?
-    scoresにアリスのランキングがない場合を考慮していない
-
+    val ranks = arrayListOf<Int>()
+    for(aliceScore in alice){
+        var rank = rankHolder.getRank(aliceScore);
+        ranks.add(rank);
+    }
+    val array = Array(ranks.size){0}
+    ranks.toArray(array)
+    return array
 }
 class RankHolder(scores: Array<Int>){
     lateinit var map: MutableMap<Int,Int>
@@ -47,7 +52,9 @@ class RankHolder(scores: Array<Int>){
         return map
     }
     fun getRank( score:Int ):Int{
-        return map.filterValues { it == score }.keys.first()
+        var keys =  map.filterValues { it > score  }.keys
+        if(keys.isEmpty()) return 1
+        return keys.last() + 1
     }
 }
 
