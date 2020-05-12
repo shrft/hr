@@ -31,30 +31,45 @@ fun climbingLeaderboard(scores: Array<Int>, alice: Array<Int>): Array<Int> {
     ranks.toArray(array)
     return array
 }
+
+/**
+ * @params scores 現在のスコアのリスト。点数降順
+ */
 class RankHolder(scores: Array<Int>){
-    lateinit var map: MutableMap<Int,Int>
+//    var map: MutableMap<Int,Int>
+    var scoreSize: Int = 0
+    var scoreIndex: Int = 0
+    var previousScore: Int = -1
+    var currentRank: Int = 1
+
     init{
-        map = scoresToRankMap(scores);
-    }
-    fun getRankMap():MutableMap<Int,Int>{
-        return map
-    }
-    fun scoresToRankMap(scores: Array<Int>):MutableMap<Int,Int>{
-        var map = mutableMapOf<Int,Int>()
-        var currentRank = 0;
-        for(score in scores){
-            if(map.containsValue(score)){
-                continue;
-            }
-            currentRank++;
-            map.put(currentRank, score)
-        }
-        return map
+        scoreSize = scores.size
     }
     fun getRank( score:Int ):Int{
-        var keys =  map.filterValues { it > score  }.keys
-        if(keys.isEmpty()) return 1
-        return keys.last() + 1
+
+        // スコアリストの上から順に処理を実行する
+        // すでにチェック済みのスコアは飛ばす
+        // そのために現在のindexを保存しておく
+        for(i in 0 until scoreSize){
+            // check if i is the same as previous i value, if so, skip
+            // check if score is larger or equal to (i)
+            // if large or equal, then return current rank
+            // if not, increment current rank
+        }
+
+
+
+//        run loop@{
+//            map.forEach{
+//                if(it.value > score){
+//                    rank = it.key + 1
+//                    return@forEach
+//                }
+//                return@loop
+//            }
+//        }
+//        return rank
+        return 1
     }
 }
 
